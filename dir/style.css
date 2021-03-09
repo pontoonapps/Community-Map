@@ -1,0 +1,473 @@
+/* code adapted from google's developer website: https://developers.google.com/maps/documentation/javascript/adding-a-google-map#maps_add_map-css*/
+:root {
+  --englishVisibility: none;
+  --frenchVisibility: none;
+}
+
+#map {
+  width: 100%;
+}
+
+body {
+  margin: 0;
+  overflow-y: hidden;
+}
+
+#bodyContainer {
+  display: flex;
+  height: 90vh;
+}
+
+#menu {
+  background-color: #fafafa;
+  border-top: 2px solid #fafafa;
+  width: 0%;
+  transition: .5s;
+  height: 90vh;
+  overflow-y: scroll;
+}
+
+#menu:hover {
+  width: 20%;
+}
+
+.float-child {
+  font-family: "Open Sans";
+  font-size: 12px;
+  width: 85%;
+}
+
+.sidebar {
+  font-family: "Valera Round", sans-serif;
+  font-size: 18px;
+}
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  background-color: #7FB9E6;
+  height: 10vh;
+}
+
+#pontoonLogo {
+  align-self: left;
+  object-fit: contain;
+  height: 4vh;
+  margin: 3vh;
+  cursor: pointer;
+}
+
+#interregButton {
+  top: 0;
+  height: 4vh;
+  object-fit: contain;
+  margin: 2.5vh;
+  cursor: pointer;
+  background-color: #77add9;
+  border: 1px solid #70a3cc;
+}
+
+#languageSelectorWrapper {
+  padding: 0;
+  margin: 0;
+  height: min-content;
+  justify-content: right;
+  align-self: center;
+  margin-left: auto;
+}
+
+#emailWindow {
+  font-family: "Valera Round", sans-serif;
+  font-size: 18px;
+  position: fixed;
+  display: none;
+  top: 10%;
+  left: 30%;
+  height: 80%;
+  width: 40%;
+  z-index: 10;
+  background-color: #eeeeee;
+  padding: 1%;
+  border: 1px solid black;
+  border-radius: 10px;
+  overflow: auto;
+}
+
+#emailWindow > button {
+  margin-top: 1%;
+  width: 100%;
+  height: 6%;
+  font-size: 18px;
+  border: 0;
+}
+
+#emailWindow > label {
+  width: 100%;
+  height: 6%;
+  vertical-align: unset;
+  font-size: 18px;
+  text-align: center;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+}
+
+#emailWindow > .closeButton {
+  position: absolute;
+  right: 1%;
+  top: 0;
+  font-size: 150%;
+  cursor: pointer;
+}
+
+#toggleSwitchContainer > p {
+  margin-top: 0;
+}
+
+#removeEmailsButton {
+  background-color: #e8491f;
+}
+
+#addEmailsButton {
+  background-color: #b2cf65;
+}
+
+#uploadCSVButton{
+  background-color: #7FB9E6;
+  margin-bottom: 1%;
+}
+
+#newEmailField {
+  width: 97%;
+  height: 5%;
+  padding-left: 2%;
+  font-family: "Valera Round", sans-serif;
+  font-size: 18px;
+}
+
+.scrollable-container {
+  overflow-y: scroll;
+  overflow-x: scroll;
+  height: 24%;
+}
+
+.language-selector {
+  margin: 0;
+  cursor: pointer;
+  padding: 0.2em;
+  font-size: 1em;
+  border-radius: 0.5em;
+  border: none;
+  background-color: transparent;
+  width: 45%;
+}
+
+.language-selector img {
+  cursor: pointer;
+  font-size: 1em;
+  padding: 0;
+  height: 1.5em;
+  max-width: 95%;
+  width: 3em;
+  pointer-events: none;
+  margin: 0 auto;
+  border: 0.2em double transparent;
+  border-radius: 1em;
+}
+
+.interreg {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 2.5vh;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
+  text-align: center;
+  font-family: "Open Sans";
+  font-size: 14px;
+}
+
+.interreg-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+  align-items: center;
+}
+
+.interreg-content img {
+  width: 80%;
+}
+
+.interreg-content button {
+  background: none padding-box #7FB9E6;
+  border: 1px;
+  border-radius: 20% 20%;
+  border-color: lightgray;
+  cursor: pointer;
+  margin: 10px;
+  padding: 8px 17px;
+  font-size: 18px;
+}
+
+#interregButton {
+  color: white;
+  font-size: 24px;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.interreg-close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.custom-map-control-button {
+  -webkit-user-drag: none;
+  background: none padding-box rgb(255, 255, 255);
+  display: block;
+  border: 0px;
+  margin: 10px;
+  padding: 8px 17px;
+  text-transform: none;
+  appearance: none;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  direction: ltr;
+  overflow: hidden;
+  text-align: left;
+  color: rgb(0, 0, 0);
+  font-family: "Valera Round", sans-serif;
+  font-size: 18px;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 1.2) 0px 2px 5px -1px;
+}
+
+.custom-map-control-button:hover {
+  color: rgb(0, 0, 0);
+  background-color: rgb(235, 235, 235);
+}
+
+.custom-map-control-icon {
+  padding: 8px;
+  margin: 10px;
+  width: 40px;
+  height: 40px;
+}
+
+#markerCreatorButton {
+  padding: 3px;
+}
+
+.custom-map-control-icon img {
+  -webkit-user-drag: none;
+  object-fit: contain;
+  width: 34px;
+  height: 34px;
+}
+
+#markerCreatorButton:hover {
+  padding: 0;
+}
+#markerCreatorButton:hover > img {
+  width: 40px;
+  height: 40px;
+}
+
+.info-input-window {
+  -webkit-user-drag: none;
+  background: none padding-box rgb(255, 255, 255);
+  display: block;
+  border: 0px;
+  margin: 10px;
+  padding: 8px 17px;
+  text-transform: none;
+  appearance: none;
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+  direction: ltr;
+  overflow: hidden;
+  text-align: left;
+  color: rgb(0, 0, 0);
+  font-family: "Valera Round", sans-serif;
+  font-size: 18px;
+  border-radius: 2px;
+  box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+}
+
+.map-marker-infowindow {
+  overflow-y: auto;
+}
+
+.map-marker-infowindow p {
+  margin: 0;
+}
+
+.map-marker-infowindow h2 {
+  margin: 0;
+}
+
+.map-marker-infowindow h3 {
+  margin-bottom: 0;
+}
+.map-marker-infowindow h4 {
+  margin: 0;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  margin: 0px 10px;
+  cursor: pointer;
+  list-style: none;
+  -webkit-user-drag: none;
+  box-sizing: border-box;
+  color: rgb(86, 86, 86);
+  font-family: "Open Sans", sans-serif;
+  user-select: none;
+  font-size: 18px;
+}
+
+.dropdown-button {
+  margin-bottom: 0 !important;
+}
+
+.dropdown-item {
+    -webkit-user-drag: none;
+    background: none padding-box rgb(255, 255, 255);
+    display: block;
+    width: inherit;
+    border: 0px;
+    margin: 0px;
+    padding: 8px 17px;
+    text-transform: none;
+    appearance: none;
+    position: relative;
+    cursor: pointer;
+    user-select: none;
+    direction: ltr;
+    overflow: hidden;
+    text-align: left;
+    color: rgb(0, 0, 0);
+    font-family: "Open Sans", sans-serif;
+    font-size: 18px;
+    border-radius: 2px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 1px 4px -1px;
+}
+
+.dropdown-item input[type=text] {
+  background: inherit;
+  padding: 4px 4px;
+  margin-left: -0.3vw;
+  border: none;
+  width: 100%;
+  font-family: inherit;
+  font-size: 16px;
+}
+
+.dropdown-item:hover {
+  color: rgb(0, 0, 0);
+  background-color: rgb(235, 235, 235);
+}
+
+.dropdown-content.hidden {
+  display: none;
+}
+
+.english-text {
+  display: var(--englishVisibility);
+}
+.french-text {
+  display: var(--frenchVisibility);
+}
+
+h3 {
+  margin-bottom: 5px;
+}
+
+#toggleSwitchContainer, #guestLinkContainer {
+  display: inline;
+}
+
+
+/* Switch CSS adapted from https://www.w3schools.com/howto/howto_css_switch.asp */
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  top: 0;
+  left: 2em;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #e8491f;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.switch-input:checked + .slider {
+  background-color: #b2cf65;
+}
+
+.switch-input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+.switch-input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}

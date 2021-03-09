@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Community Map</title>
+    <!-- script adapted https://developers.google.com/maps/documentation/javascript/adding-a-google-map#maps_add_map-html -->
+    <script src='./markerStyleConfig.js'></script>
+    <script src="./script.js" defer></script>
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDryjHMwWtqzyCRaRmCH-5obJuqB-Rt9_g&callback=initPage&libraries=&v=weekly"
+      defer
+    ></script>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./style.css" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  </head>
+  <body>
+    <nav class="navBar">
+      <a href='https://pontoonapps.com/'>
+        <img id="pontoonLogo" src="./img/PONToon-logo-119x28-white.png"></img>
+      </a>
+      <!--Taken from CareerGuide-->
+      <div id="languageSelectorWrapper">
+        <button id="setEnglish" class="language-selector">
+          <img src="img/english.png"></img>
+        </button>
+        <button id="setFrench" class="language-selector">
+          <img src="img/french.png"></img>
+        </button>
+      </div>
+      <button id="interregButton"><span class="english-text">About</span><span class="french-text">À propos de</span></button>
+    </nav>
+  </body>
+  <body>
+    <div id='bodyContainer'>
+      <div id='menu' visibility='hidden'>
+      </div>
+      <div id='interregWindow' class='interreg'>
+        <div id='interregWindowContent' class='interreg-content'>
+          <span id='interregWindowClose' class='interreg-close'>✖</span>
+          <div id='interregContent'></div>
+        </div>
+      </div>
+      <div id='map' class='float-child'></div>
+
+    </div>
+  </body>
+  <script>
+  let userLanguage;
+  const root = document.documentElement;
+  const title = document.querySelector('title');
+    // script in HTML to prevent flash of wrong language
+    if (localStorage.getItem('PONTOON_CG_LANG') === 'french') {
+      userLanguage = 'FR';
+      title.textContent = 'Communauté';
+      root.style.setProperty('--englishVisibility', 'none');
+      root.style.setProperty('--frenchVisibility', 'block');
+      document.getElementById('setEnglish').style.border = '';
+      document.getElementById('setFrench').style.border = '1px solid black';
+    } else {
+      userLanguage = 'EN';
+      title.textContent = 'Community';
+      root.style.setProperty('--frenchVisibility', 'none');
+      root.style.setProperty('--englishVisibility', 'block');
+      document.getElementById('setFrench').style.border = '';
+      document.getElementById('setEnglish').style.border = '1px solid black';
+    }
+  </script>
+</html>

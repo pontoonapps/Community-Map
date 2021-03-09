@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54.74 109.14">
+  <defs>
+    <style>.cls-1{fill:none;}.cls-2{fill:#36b6b0;}</style>
+  </defs>
+  <title>Asset 2</title>
+  <g id="Layer_2" data-name="Layer 2">
+    <g id="Layer_1-2" data-name="Layer 1">
+      <g id="Group_171" data-name="Group 171">
+        <ellipse id="Ellipse_16-73" data-name="Ellipse 16-73" class="cls-1" cx="27.61" cy="27.34" rx="13.76" ry="13.63"/>
+        <path id="Path_37-73" data-name="Path 37-73" class="cls-2" d="M27.62,54.68A27.34,27.34,0,1,0,0,27.34,27.35,27.35,0,0,0,27.62,54.68Zm0-41A13.63,13.63,0,1,1,13.85,27.34,13.63,13.63,0,0,1,27.62,13.72Z"/>
+        <path id="Path_38-73" data-name="Path 38-73" class="cls-2" d="M11.51,59.46,8.08,57.54l21,51.6,18.1-52-3.46,2.36C33.44,66.51,24.12,66.49,11.51,59.46Z"/>
+      </g>
+    </g>
+  </g>
+</svg>
