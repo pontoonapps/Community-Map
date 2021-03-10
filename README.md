@@ -30,6 +30,12 @@ Be cautious if removing categories or attempting to change their values as the m
 * Currently the guest link cannot be auto-generated. This is due to the API not giving access to the email of the currently logged in user
   * Recommended fix for this if desired would be to edit `/community-api/v2/login` in the API to return the email address of the user if they are of type 'recruiter'. Then store this information in the script in the `userTypeCheck()` function.
 
+## Translation
+
+* Translation between English and French is done by creating two `<span>` elements for all text items. One span will have the text in English, and the other will have the text in French. The spans must be assigned the classes `english-text` and `french-text` respectively.
+* The CSS stores the visibility of English and French text in the variables  `--englishVisibility` and `--frenchVisibility`, these variables are then assigned to the elements `display` attribute in the CSS using their class selectors.
+* Community Map uses the same Cookie as Career Guide, `PONTOON_CG_LANG`, to store the user's language selection in the browser, however the variable `userLanguage` is used throughout the app when creating new elements.
+
 ## API Functions
 
 ### API Return Codes
