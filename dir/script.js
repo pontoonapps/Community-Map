@@ -3,19 +3,26 @@
 
 const PONTOONAPIKEY = '4F9694E1-3AB8-4992-8B3E-C5C6B26412CD';
 
-// Define the map as a global variable so all functions can access it
 let authCode, map, userType, markerInfo;
+let pageInitialised = false;
 let userMarkers = [];
 changeLanguage();
 function changeLanguage() {
-  const controlsTL = [];
-  const listLength = map.controls[google.maps.ControlPosition.TOP_CENTER].length;
-  for (let i = 0; i < listLength; i++) {
-    controlsTL.push(map.controls[google.maps.ControlPosition.TOP_CENTER].pop());
-  }
-  const revControlsTL = controlsTL.reverse();
-  for (let i = 0; i < listLength; i++) {
-    map.controls[google.maps.ControlPosition.TOP_CENTER].push(revControlsTL[i]);
+  try {
+    const controlsTC = [];
+    const listLength = map.controls[google.maps.ControlPosition.TOP_CENTER].length;
+    for (let i = 0; i < listLength; i++) {
+      controlsTC.push(map.controls[google.maps.ControlPosition.TOP_CENTER].pop());
+    }
+    const revControlsTC = controlsTC.reverse();
+    for (let i = 0; i < listLength; i++) {
+      map.controls[google.maps.ControlPosition.TOP_CENTER].push(revControlsTC[i]);
+    }
+  } catch (e) {
+    // If the page isn't initialised, then the issue is that map.controls doesn't exist due to the map not existing yet
+    if (pageInitialised) {
+      console.error(e);
+    }
   }
   if (markerInfo) {
     markerInfo.close();
@@ -70,6 +77,7 @@ async function initPage() {
       document.getElementById('setFrench').style.border = '1px solid black';
     }
   });
+  pageInitialised = true;
 }
 
 // function to initialise map on form adapted from https://developers.google.com/maps/documentation/javascript/adding-a-google-map#maps_add_map-javascript
