@@ -232,3 +232,6 @@ Be cautious if removing categories or attempting to change their values as the m
 * Grabs edited marker info with retrieved elements on the page, then saves it to the database.
 * `marker` is the selected marker object.
 * Returns nothing.
+
+
+To use this app you will need the Community API: https://github.com/pontoonapps/Community-API
